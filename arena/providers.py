@@ -16,6 +16,7 @@ MODELS: list[ModelSpec] = [
     ModelSpec("Groq · GPT-OSS 20B", "https://api.groq.com/openai/v1", "GROQ_API_KEY", "openai/gpt-oss-20b"),
     ModelSpec("Groq · GPT-OSS 120B", "https://api.groq.com/openai/v1", "GROQ_API_KEY", "openai/gpt-oss-120b"),
     ModelSpec("Groq · Qwen3.8 27B", "https://api.groq.com/openai/v1", "GROQ_API_KEY", "qwen/qwen3.8-27b"),
+    ModelSpec("Groq · Llama promp guard", "https://api.groq.com/openai/v1", "GROQ_API_KEY", "meta-llama/llama-prompt-guard-2-22m"),
     ModelSpec(
         "Gemini · Flash",
         "https://generativelanguage.googleapis.com/v1beta/openai/",
@@ -26,7 +27,7 @@ MODELS: list[ModelSpec] = [
         "OpenRouter · Nemotron (free)",
         "https://openrouter.ai/api/v1",
         "OPENROUTER_API_KEY",
-        "nvidia/nemotron-3.5-lightning:free",
+        "nvidia/nemotron-3-ultra-550b-a55b:free",
     ),
     ModelSpec("Ollama · Qwen2.5 Coder (local)", "", None, "qwen2.5-coder:3b", enabled_env="OLLAMA_BASE_URL"),
     ModelSpec("Ollama · Llama 3.2 (local)", "", None, "llama3.2:3b", enabled_env="OLLAMA_BASE_URL"),
