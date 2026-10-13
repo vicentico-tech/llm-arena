@@ -1,6 +1,6 @@
 from types import SimpleNamespace
 
-from arena.providers import ModelSpec, available_models
+from arena.providers import ModelSpec, available_models, is_available
 from arena.runner import run_all, run_one
 
 SPEC = ModelSpec("fake", "http://x", "FAKE_KEY", "m")
@@ -51,3 +51,13 @@ def test_provider_without_key_is_disabled(monkeypatch):
     assert available_models() == {}
     monkeypatch.setenv("GROQ_API_KEY", "x")
     assert all(k.startswith("Groq") for k in available_models())
+
+
+def test_provider_requires_nonempty_values_and_accepts_unicode(monkeypatch):
+    spec = ModelSpec("local", "", "FAKE_KEY", "m", enabled_env="FAKE_ENDPOINT")
+    monkeypatch.setenv("FAKE_ENDPOINT", "http://localhost:11434/v1")
+    monkeypatch.setenv("FAKE_KEY", "")
+    assert not is_available(spec)
+
+    monkeypatch.setenv("FAKE_KEY", "válida🔑")
+    assert is_available(spec)
